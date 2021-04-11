@@ -45,6 +45,7 @@ function rm_all_images() {
         docker rmi $hangout_images
         echo "remove all images finish"
     fi
+    docker images | grep -v "REPOSITORY" | awk '{print $3}' | xargs -I{} docker rmi -f {}
     return 0
 }
 
